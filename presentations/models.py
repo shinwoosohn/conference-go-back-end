@@ -3,13 +3,13 @@ from django.urls import reverse
 
 
 class Status(models.Model):
-    """
-    The Status model provides a status to a Presentation, which
-    can be SUBMITTED, APPROVED, or REJECTED.
+    # """
+    # The Status model provides a status to a Presentation, which
+    # can be SUBMITTED, APPROVED, or REJECTED.
 
-    Status is a Value Object and, therefore, does not have a
-    direct URL to view it.
-    """
+    # Status is a Value Object and, therefore, does not have a
+    # direct URL to view it.
+    # """
 
     name = models.CharField(max_length=10)
 
@@ -22,10 +22,10 @@ class Status(models.Model):
 
 
 class Presentation(models.Model):
-    """
-    The Presentation model represents a presentation that a person
-    wants to give at the conference.
-    """
+    # """
+    # The Presentation model represents a presentation that a person
+    # wants to give at the conference.
+    # """
 
     presenter_name = models.CharField(max_length=150)
     company_name = models.CharField(max_length=150, null=True, blank=True)
