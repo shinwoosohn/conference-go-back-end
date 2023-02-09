@@ -18,7 +18,11 @@ class AttendeeDetailEncoder(ModelEncoder):
         "email",
         "company_name",
         "created",
+        "conference",
     ]
+
+    def get_extra_data(self, o):
+        return {"conference": o.conference.name}
 
 
 @require_http_methods(["GET", "POST"])
@@ -69,7 +73,7 @@ def api_list_attendees(request, conference_id):
         attendee = Attendee.objects.create(**content)
         return JsonResponse(
             attendee,
-            encoder=AttendeeDetailEncoder,
+            encoder=AttendeeListEncoder,
             safe=False,
         )
 
