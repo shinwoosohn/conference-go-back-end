@@ -31,9 +31,14 @@ def get_weather_data(city, state):
     weather = json.loads(response.content)
 
     # print("\n----------", weather)
-
-    w_lat = weather[0]["lat"]
-    w_lon = weather[0]["lon"]
+    try:
+        w_lat = weather[0]["lat"]
+        w_lon = weather[0]["lon"]
+    except:
+        return {
+            "temp": None,
+            "weather_description": None,
+        }
 
     url2 = "https://api.openweathermap.org/data/2.5/weather"
     headers = {"Authorization": OPEN_WEATHER_API_KEY}
@@ -41,6 +46,7 @@ def get_weather_data(city, state):
         "lat": w_lat,
         "lon": w_lon,
         "appid": OPEN_WEATHER_API_KEY,
+        "units": "imperial",
     }
     response2 = requests.get(url2, headers=headers, params=params)
     weather2 = json.loads(response2.content)
