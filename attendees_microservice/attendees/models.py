@@ -2,6 +2,15 @@ from django.db import models
 from django.urls import reverse
 from django.core.exceptions import ObjectDoesNotExist
 
+
+class AccountVO(models.Model):
+    email = models.EmailField(max_length=200, unique=True)
+    first_name = models.CharField(max_length=200)
+    last_name = models.CharField(max_length=200)
+    is_active = models.BooleanField(default=True)
+    updated = models.DateTimeField(auto_now_add=True)
+
+
 class ConferenceVO(models.Model):
     import_href = models.CharField(max_length=200, unique=True)
     name = models.CharField(max_length=200)
@@ -12,6 +21,7 @@ class Attendee(models.Model):
     The Attendee model represents someone that wants to attend
     a conference
     """
+
     email = models.EmailField()
     name = models.CharField(max_length=200)
     company_name = models.CharField(max_length=200, null=True, blank=True)
@@ -44,6 +54,7 @@ class Badge(models.Model):
     Badge is a Value Object and, therefore, does not have a
     direct URL to view it.
     """
+
     created = models.DateTimeField(auto_now_add=True)
 
     attendee = models.OneToOneField(

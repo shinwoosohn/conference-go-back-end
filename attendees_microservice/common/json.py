@@ -41,7 +41,6 @@ class ModelEncoder(DateEncoder, QuerySetEncoder, JSONEncoder):
                 d["href"] = o.get_api_url()
             for property in self.properties:
                 value = getattr(o, property)
-                print(value)
                 if property in self.encoders:
                     encoder = self.encoders[property]
                     value = encoder.default(value)
